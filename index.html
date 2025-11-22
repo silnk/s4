@@ -5,234 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personal Information Form</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #e0f7fa 0%, #bbdefb 100%);
-            padding: 20px;
-            line-height: 1.6;
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: 30px;
-            border-radius: 16px;
-            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        h1 {
-            color: #1565c0;
-            margin-bottom: 30px;
-            text-align: center;
-            font-weight: 600;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
-        }
-
-        .person-section {
-            background: rgba(255, 255, 255, 0.7);
-            padding: 25px;
-            margin-bottom: 25px;
-            border-radius: 12px;
-            position: relative;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .person-section:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
-        }
-
-        .person-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .person-number {
-            font-weight: bold;
-            color: #0d47a1;
-            font-size: 18px;
-        }
-
-        .remove-btn {
-            background: linear-gradient(to right, #ff5252, #d32f2f);
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 500;
-            box-shadow: 0 2px 5px rgba(211, 47, 47, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .remove-btn:hover {
-            background: linear-gradient(to right, #ff6b6b, #ff5252);
-            box-shadow: 0 4px 8px rgba(211, 47, 47, 0.3);
-            transform: translateY(-2px);
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        label {
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #0d47a1;
-            font-size: 15px;
-        }
-
-        input, select {
-            padding: 12px;
-            border: 1px solid rgba(13, 71, 161, 0.2);
-            border-radius: 8px;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.8);
-        }
-
-        input:focus, select:focus {
-            outline: none;
-            border-color: #1565c0;
-            box-shadow: 0 0 0 3px rgba(21, 101, 192, 0.2);
-        }
-
-        input:invalid, select:invalid {
-            border-color: #f44336;
-        }
-
-        .button-group {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin-top: 30px;
-            flex-wrap: wrap;
-        }
-
-        button {
-            padding: 14px 28px;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .add-btn {
-            background: linear-gradient(to right, #43a047, #2e7d32);
-            color: white;
-        }
-
-        .add-btn:hover {
-            background: linear-gradient(to right, #66bb6a, #43a047);
-            box-shadow: 0 6px 12px rgba(67, 160, 71, 0.25);
-            transform: translateY(-3px);
-        }
-
-        .print-btn {
-            background: linear-gradient(to right, #1976d2, #0d47a1);
-            color: white;
-        }
-
-        .print-btn:hover {
-            background: linear-gradient(to right, #2196f3, #1976d2);
-            box-shadow: 0 6px 12px rgba(25, 118, 210, 0.25);
-            transform: translateY(-3px);
-        }
-
-        /* Print styles */
-        @media print {
-            body {
-                background-color: white;
-                padding: 0;
-            }
-
-            .container {
-                box-shadow: none;
-                padding: 20px;
-                max-width: 100%;
-                background: white;
-                border: none;
-            }
-
-            button, .remove-btn {
-                display: none;
-            }
-
-            .person-section {
-                background: white;
-                border: 1px solid #ddd;
-                page-break-inside: avoid;
-                box-shadow: none;
-            }
-
-            input, select {
-                border: none;
-                border-bottom: 1px solid #333;
-                background: transparent;
-                padding: 5px 0;
-            }
-
-            label {
-                color: #333;
-            }
-
-            h1 {
-                color: #333;
-            }
-        }
-
-        /* Mobile responsive */
-        @media (max-width: 600px) {
-            .container {
-                padding: 20px;
-            }
-
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-
-            .button-group {
-                flex-direction: column;
-                width: 100%;
-            }
-
-            button {
-                width: 100%;
-            }
-        }
-
-        .error {
-            color: #f44336;
-            font-size: 14px;
-            margin-top: 5px;
-            font-weight: 500;
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:#e3f2fd;padding:20px;line-height:1.3}
+        .container{max-width:800px;margin:0 auto;background:#fff;padding:20px;border-radius:8px;box-shadow:0 4px 15px rgba(0,0,0,.1)}
+        h1{color:#0d47a1;margin-bottom:20px;text-align:center;font-size:24px}
+        .person-section{display:grid;grid-template-columns:1fr 1fr;gap:8px;background:#f5f9ff;padding:12px;border:1px solid #90caf9;border-radius:6px;font-size:12px;margin-bottom:12px;page-break-inside:avoid}
+        .person-header{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center}
+        .person-number{font-weight:700;color:#0d47a1;font-size:14px}
+        .remove-btn{background:#d32f2f;color:#fff;border:none;padding:4px 8px;border-radius:4px;font-size:12px;cursor:pointer}
+        .form-group{display:flex;flex-direction:column}
+        label{font-weight:600;margin-bottom:2px;color:#0d47a1;font-size:11px}
+        input,select{padding:4px;border:1px solid #90caf9;border-radius:4px;font-size:12px}
+        .button-group{display:flex;gap:10px;justify-content:center;margin-top:20px}
+        button{padding:10px 20px;border:none;border-radius:6px;font-size:14px;cursor:pointer;font-weight:600}
+        .add-btn{background:#2e7d32;color:#fff}
+        .print-btn{background:#1565c0;color:#fff}
+        @media(max-width:600px){.person-section{grid-template-columns:1fr}}
+        @media print{
+            body{background:#fff;padding:0;font-size:10px}
+            .container{box-shadow:none;padding:10px;max-width:210mm;margin:0}
+            button{display:none}
+            .person-section{width:98mm;height:70mm;display:inline-block;vertical-align:top;margin:2mm;padding:10px;border:1px solid #333;page-break-inside:avoid;background:#fff}
+            .person-header{margin-bottom:6px}
+            input,select{border:none;border-bottom:1px solid #000;background:transparent;padding:2px 0}
+            label{color:#000}
+            h1{font-size:18px;margin-bottom:10px}
         }
     </style>
 </head>
@@ -249,155 +46,41 @@
     </div>
 
     <script>
-        let personCount = 0;
-
-        function addPerson() {
+        let personCount=0;
+        function addPerson(){
             personCount++;
-            const container = document.getElementById('personsContainer');
-            const personSection = document.createElement('div');
-            personSection.className = 'person-section';
-            personSection.id = `person-${personCount}`;
-            
-            personSection.innerHTML = `
+            const container=document.getElementById('personsContainer');
+            const section=document.createElement('div');
+            section.className='person-section';
+            section.id=`person-${personCount}`;
+            section.innerHTML=`
                 <div class="person-header">
                     <span class="person-number">Person ${personCount}</span>
-                    ${personCount > 1 ? `<button type="button" class="remove-btn" onclick="removePerson(${personCount})">Remove</button>` : ''}
+                    ${personCount>1?`<button type="button" class="remove-btn" onclick="removePerson(${personCount})">×</button>`:''}
                 </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="nationality-${personCount}">Nationality *</label>
-                        <input type="text" id="nationality-${personCount}" name="nationality-${personCount}" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="lastName-${personCount}">Last Name *</label>
-                        <input type="text" id="lastName-${personCount}" name="lastName-${personCount}" required>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="firstName-${personCount}">First Name *</label>
-                        <input type="text" id="firstName-${personCount}" name="firstName-${personCount}" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="dob-${personCount}">Date of Birth *</label>
-                        <input type="date" id="dob-${personCount}" name="dob-${personCount}" required>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="pob-${personCount}">Place of Birth *</label>
-                        <input type="text" id="pob-${personCount}" name="pob-${personCount}" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="religion-${personCount}">Religion *</label>
-                        <select id="religion-${personCount}" name="religion-${personCount}" required>
-                            <option value="">Select Religion</option>
-                            <option value="Muslim">Muslim</option>
-                            <option value="Non-Muslim">Non-Muslim</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="sex-${personCount}">Sex *</label>
-                        <select id="sex-${personCount}" name="sex-${personCount}" required>
-                            <option value="">Select Sex</option>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="relation-${personCount}">Relation *</label>
-                        <input type="text" id="relation-${personCount}" name="relation-${personCount}" required>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="passport-${personCount}">Passport Number *</label>
-                        <input type="text" id="passport-${personCount}" name="passport-${personCount}" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="issueDate-${personCount}">Issue Date *</label>
-                        <input type="date" id="issueDate-${personCount}" name="issueDate-${personCount}" required>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="expiryDate-${personCount}">Expiry Date *</label>
-                        <input type="date" id="expiryDate-${personCount}" name="expiryDate-${personCount}" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="placeOfIssue-${personCount}">Place of Issue *</label>
-                        <input type="text" id="placeOfIssue-${personCount}" name="placeOfIssue-${personCount}" required>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="visaStamp-${personCount}">Visa Stamping Place *</label>
-                        <input type="text" id="visaStamp-${personCount}" name="visaStamp-${personCount}" required>
-                    </div>
-                </div>
+                <div class="form-group"><label>Nationality *</label><input required></div>
+                <div class="form-group"><label>Last Name *</label><input required></div>
+                <div class="form-group"><label>First Name *</label><input required></div>
+                <div class="form-group"><label>Date of Birth *</label><input type="date" required></div>
+                <div class="form-group"><label>Place of Birth *</label><input required></div>
+                <div class="form-group"><label>Religion *</label><select required><option value="">Select</option><option>Muslim</option><option>Non-Muslim</option></select></div>
+                <div class="form-group"><label>Sex *</label><select required><option value="">Select</option><option>Male</option><option>Female</option></select></div>
+                <div class="form-group"><label>Relation *</label><input required></div>
+                <div class="form-group"><label>Passport Number *</label><input required></div>
+                <div class="form-group"><label>Issue Date *</label><input type="date" required></div>
+                <div class="form-group"><label>Expiry Date *</label><input type="date" required></div>
+                <div class="form-group"><label>Place of Issue *</label><input required></div>
+                <div class="form-group"><label>Visa Stamping Place *</label><input required></div>
             `;
-            
-            container.appendChild(personSection);
+            container.appendChild(section);
         }
-
-        function removePerson(id) {
-            const personSection = document.getElementById(`person-${id}`);
-            if (personSection) {
-                personSection.remove();
-            }
+        function removePerson(id){document.getElementById(`person-${id}`).remove()}
+        function printToPDF(){
+            if(!document.querySelectorAll('.person-section').length){alert('Add at least one person');return}
+            if(!document.querySelector('input:invalid')) window.print()
+            else alert('Please fill all required fields')
         }
-
-        function validateForm() {
-            const requiredFields = document.querySelectorAll('input[required], select[required]');
-            let isValid = true;
-            
-            requiredFields.forEach(field => {
-                if (!field.value.trim()) {
-                    field.style.borderColor = 'red';
-                    isValid = false;
-                } else {
-                    field.style.borderColor = '#ddd';
-                }
-            });
-            
-            return isValid;
-        }
-
-        function printToPDF() {
-            if (!validateForm()) {
-                alert('Please fill in all required fields');
-                return;
-            }
-            
-            // Validate expiry date is after issue date
-            const persons = document.querySelectorAll('.person-section');
-            let dateValid = true;
-            
-            persons.forEach(person => {
-                const personId = person.id.split('-')[1];
-                const issueDate = document.getElementById(`issueDate-${personId}`).value;
-                const expiryDate = document.getElementById(`expiryDate-${personId}`).value;
-                
-                if (issueDate && expiryDate && new Date(expiryDate) <= new Date(issueDate)) {
-                    dateValid = false;
-                    document.getElementById(`expiryDate-${personId}`).style.borderColor = 'red';
-                }
-            });
-            
-            if (!dateValid) {
-                alert('Expiry date must be after issue date');
-                return;
-            }
-            
-            window.print();
-        }
-
-        // Add initial person on load
-        window.onload = function() {
-            addPerson();
-        };
+        window.onload=()=>addPerson();
     </script>
 </body>
 </html>
